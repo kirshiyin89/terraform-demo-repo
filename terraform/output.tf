@@ -1,5 +1,3 @@
-
-
 # Output the repository URLs
 output "repository_urls" {
   value = {
