@@ -56,7 +56,8 @@ jobs:
         if: github.event_name == 'pull_request'
         run: terraform plan -no-color
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TF_VAR_github_token }}
+          TF_VAR_github_owner: ${{ secrets.TF_VAR_github_owner }}
         continue-on-error: true
       
       - name: Update Pull Request
@@ -93,4 +94,5 @@ jobs:
         if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         run: terraform apply -auto-approve
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TF_VAR_github_token }}
+          TF_VAR_github_owner: ${{ secrets.TF_VAR_github_owner }}
