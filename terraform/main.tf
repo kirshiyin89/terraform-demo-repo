@@ -46,26 +46,6 @@ locals {
       description = "Microservice A for customer data processing"
       topics      = ["microservice", "customer-data"]
       template    = null
-    },
-    "service-b" = {
-      description = "Microservice B for order processing"
-      topics      = ["microservice", "order-processing"]
-      template    = null
-    },
-    "frontend-app" = {
-      description = "Main frontend application"
-      topics      = ["frontend", "react"]
-      template    = null
-    },
-    "documentation" = {
-      description = "Central documentation repository"
-      topics      = ["docs", "markdown"]
-      template    = null
-    },
-    "shared-libraries" = {
-      description = "Shared code libraries and utilities"
-      topics      = ["library", "shared-code"]
-      template    = null
     }
   }
 }
