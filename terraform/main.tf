@@ -16,7 +16,7 @@ provider "github" {
 locals {
   standard_topics = ["managed-by-terraform", "organization-standard"]
   
-  # Standard repository configuration settings
+  # Standard repository configuration settings 
   standard_settings = {
     visibility           = "public"
     has_issues           = true
