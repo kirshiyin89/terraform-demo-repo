@@ -9,13 +9,13 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
-
     defaults:
       run:
         working-directory: terraform
 
     env:
       TF_VAR_github_token: ${{ secrets.TF_VAR_github_token }}
+
       TF_VAR_github_owner: ${{ github.repository_owner }}
 
     steps:
@@ -27,6 +27,14 @@ jobs:
         with:
           terraform_version: 1.6.6
 
+      # IMPORTANT: Restore previous Terraform state (if exists)
+      - name: Download Terraform state
+        uses: actions/download-artifact@v3
+        with:
+          name: terraform-state
+          path: terraform
+        continue-on-error: true
+
       - name: Terraform Initialization
         run: terraform init
 
@@ -35,3 +43,10 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve -input=false
+
+      # IMPORTANT: Save Terraform state for future runs
+      - name: Upload Terraform state
+        uses: actions/upload-artifact@v3
+        with:
+          name: terraform-state
+          path: terraform/terraform.tfstate
